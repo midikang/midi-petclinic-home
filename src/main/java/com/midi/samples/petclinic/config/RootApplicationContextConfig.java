@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.core.env.Environment;
 
 @Configuration
-@Import({BusinessConfig.class})
+@Import({BusinessConfig.class,MvcCoreConfig.class})
 public class RootApplicationContextConfig {
 	private static final Logger LOG = LoggerFactory.getLogger(RootApplicationContextConfig.class);
 
