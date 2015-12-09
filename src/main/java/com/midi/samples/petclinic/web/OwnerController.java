@@ -115,7 +115,8 @@ public class OwnerController {
 	 * Displaying an owner.
 	 * @return
 	 */
-	@RequestMapping(value="/owners/{ownerId}", method=RequestMethod.GET)
+	//@RequestMapping(value="/owners/{ownerId}", method=RequestMethod.GET)
+    @RequestMapping("/owners/{ownerId}")
 	public ModelAndView displayOwner(@PathVariable("ownerId") int ownerId){
 		ModelAndView mav = new ModelAndView("owners/ownerDetails");
 		mav.addObject(this.clinicService.findOwnerById(ownerId));
