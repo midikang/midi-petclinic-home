@@ -4,7 +4,7 @@
 	<meta content="text/html;charset=UTF-8"/>
 	<title>Pet Clinic</title>
 	
-	<spring:url value="/webjars/bootstraps/2.0.3/css/bootstrap.min.css" var="bootstrapCss"/>
+	<spring:url value="/webjars/bootstrap/2.3.0/css/bootstrap.min.css" var="bootstrapCss"/>
 	<link href="${bootstrapCss }" rel="stylesheet"/>
 	
 	<spring:url value="/resource/css/petclinic.css" var="petclinicCss"/>
