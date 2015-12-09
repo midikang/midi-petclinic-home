@@ -43,7 +43,7 @@ public class Owner extends Person {
 	}
 
 	protected Set<Pet> getPetsInternal() {
-		if (this.pets == null) {
+		if (this.pets == null || this.pets.isEmpty()) {
 			this.pets = new HashSet<>();
 		}
 		return this.pets;
