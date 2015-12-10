@@ -29,7 +29,7 @@ public class ClinicServiceImpl implements ClinicService {
 		this.petRepository = petRepository;
 		this.visitRepository = visitRepository;
 	}
-
+/*
 	@Override
 	@Transactional(readOnly=true)
 	public Owner findOwnerById(int id) throws DataAccessException {
@@ -76,5 +76,53 @@ public class ClinicServiceImpl implements ClinicService {
 	}
 	
 	
+*/
 
+	@Override
+	public Owner findOwnerById(int id) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Collection<Owner> findOwnerByLastName(String lastName) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void saveOwner(Owner owner) throws DataAccessException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Collection<PetType> findPetTypes() throws DataAccessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void savePet(Pet pet) throws DataAccessException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Pet findPetById(int petId) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void saveVisit(Visit visit) throws DataAccessException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Visit> findVisitByPetId(Integer petId) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
