@@ -13,7 +13,8 @@
     <jsp:include page="../fragments/bodyHeader.jsp"/>
     <h2>Owners</h2>
 	<datatables:table id="owners" data="${selections}" row="owner"
-		theme="bootstrap2">
+		theme="bootstrap2" cssClass="table table-stripped" pageable="false"
+		info="false" export="pdf">
 		<datatables:column title="Name" display="html">
 			<spring:url value="/owners/{ownerId}.html" var="ownerUrl">
 				<spring:param name="ownerId" value="${owner.id}" />
@@ -22,7 +23,11 @@
 					value="${owner.firstName}" /> <c:out value="${owner.lastName}" />
 			</a>
 		</datatables:column>
-		<datatables:column title="Address" property="address"/>
+		<datatables:column title="Name" display="pdf">
+			<c:out
+					value="${owner.firstName}" /> <c:out value="${owner.lastName}" />
+		</datatables:column>
+		<datatables:column title="Address" property="address" display="all"/>
 		<datatables:column title="City" property="city"/>
 		<datatables:column title="Telephone" property="telephone"/>
 		<datatables:column title="Pets">
@@ -30,7 +35,7 @@
 				<c:out value="${pet.name}"/>
 			</c:forEach>
 		</datatables:column>
-		<datatables:export type="pdf"/>
+		<datatables:export type="pdf" cssClass="btn" cssStyle="height: 25px;"/>
 	</datatables:table>
 	<jsp:include page="../fragments/footer.jsp"/>
   </div>
