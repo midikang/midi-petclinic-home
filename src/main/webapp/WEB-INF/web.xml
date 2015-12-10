@@ -14,18 +14,18 @@
     </context-param>  -->
 
    <!-- When using Spring JDBC, use the following: -->
+   <!--
    <context-param>
         <param-name>spring.profiles.active</param-name>
         <param-value>jdbc</param-value>
     </context-param>
+	-->
 
    <!--  When using Spring Data JPA, uncomment the following: -->
-   <!--
    	<context-param>
         <param-name>spring.profiles.active</param-name>
 		<param-value>spring-data-jpa</param-value>
     </context-param>
-	-->
 
     <!--
 		- Location of the Java configuration that defines the root application context.
