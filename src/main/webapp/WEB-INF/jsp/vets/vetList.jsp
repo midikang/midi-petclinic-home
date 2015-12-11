@@ -14,15 +14,25 @@
     <h2>Vets</h2>
 	<datatables:table id="vets" data="${vetList}" row="vet"
 		theme="bootstrap2" cssClass="table table-stripped" pageable="false"
-		info="false" export="pdf">
-		<datatables:column title="Name" display="html">
+		info="false">
+		<datatables:column title="Name">
 			<c:out
 					value="${vet.firstName}" /> <c:out value="${vet.lastName}" />
 		</datatables:column>
-		<datatables:export type="pdf" cssClass="btn" cssStyle="height: 25px;"/>
 	</datatables:table>
+	<div></div>
 	<jsp:include page="../fragments/footer.jsp"/>
   </div>
+  <table>
+  	<tr>
+  		<td>
+  			<a href="<spring:url value="/vets.xml" htmlEscape="true"/>">View as XML</a>
+  		</td>
+  		<td>
+  			<a href="<spring:url value="/vets.xml" htmlEscape="true"/>">View as JSON</a>
+  		</td>
+  	</tr>
+  </table>
 
 
 </html>

@@ -36,6 +36,8 @@ public class MvcCoreConfig extends WebMvcConfigurerAdapter {
 	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
 		configurer.ignoreAcceptHeader(true);
 		configurer.defaultContentType(MediaType.TEXT_HTML);
+		configurer.mediaType("html", MediaType.TEXT_HTML);
+		configurer.mediaType("xml", MediaType.APPLICATION_XML);
 	}
 
 	@Override
