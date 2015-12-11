@@ -29,7 +29,7 @@ public class ClinicServiceImpl implements ClinicService {
 		this.petRepository = petRepository;
 		this.visitRepository = visitRepository;
 	}
-/*
+
 	@Override
 	@Transactional(readOnly=true)
 	public Owner findOwnerById(int id) throws DataAccessException {
@@ -76,8 +76,8 @@ public class ClinicServiceImpl implements ClinicService {
 	}
 	
 	
-*/
 
+/*
 	@Override
 	public Owner findOwnerById(int id) throws DataAccessException {
 		// TODO Auto-generated method stub
@@ -125,4 +125,5 @@ public class ClinicServiceImpl implements ClinicService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	*/
 }
