@@ -8,6 +8,7 @@ import org.springframework.dao.DataAccessException;
 import com.midi.samples.petclinic.model.Owner;
 import com.midi.samples.petclinic.model.Pet;
 import com.midi.samples.petclinic.model.PetType;
+import com.midi.samples.petclinic.model.Vet;
 import com.midi.samples.petclinic.model.Visit;
 
 public interface ClinicService {
@@ -32,4 +33,6 @@ public interface ClinicService {
 	void saveVisit(Visit visit) throws DataAccessException;
 	
 	List<Visit> findVisitByPetId(Integer petId) throws DataAccessException;
+
+	Collection<Vet> findVets();
 }
