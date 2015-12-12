@@ -12,14 +12,13 @@
   <div class="container">
     <jsp:include page="../fragments/bodyHeader.jsp"/>
     <h2>Vets</h2>
-	<datatables:table id="vets" data="${vetList}" row="vet"
+	<datatables:table id="vets" data="${vets.vetList}" row="vet"
 		theme="bootstrap2" cssClass="table table-stripped" pageable="false"
-		info="false" export="pdf">
+		info="false">
 		<datatables:column title="Name" display="html">
 			<c:out
 					value="${vet.firstName}" /> <c:out value="${vet.lastName}" />
 		</datatables:column>
-		<datatables:export type="pdf" cssClass="btn" cssStyle="height: 25px;"/>
 	</datatables:table>
 	<jsp:include page="../fragments/footer.jsp"/>
   </div>
