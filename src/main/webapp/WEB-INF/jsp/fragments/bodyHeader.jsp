@@ -6,18 +6,18 @@
 
 <div class="navbar" style="width:601px;">
 	<div class="navbar-inner">
-		<ul>
-			<li>
-				<a href="<spring:url value="/" htmlEscape="true"/>">Home</a>
+		<ul class="nav">
+			<li style="width: 120px">
+				<a href="<spring:url value="/" htmlEscape="true"/>"><i class="icon-home"></i>Home</a>
 			</li>
-			<li>
-				<a href="<spring:url value="/owners/find.html" htmlEscape="true"/>">Find owners</a>
+			<li style="width: 150px">
+				<a href="<spring:url value="/owners/find.html" htmlEscape="true"/>"><i class="icon-search"></i>Find owners</a>
 			</li>
-			<li>
-				<a href="<spring:url value="/vets.html" htmlEscape="true"/>">Veterinarians</a>
+			<li style="width: 160px">
+				<a href="<spring:url value="/vets.html" htmlEscape="true"/>"><i class="icon-th-list"></i>Veterinarians</a>
 			</li>
-			<li>
-				<a href="<spring:url value="/oups.html" htmlEscape="true"/>">Error</a>
+			<li style="width: 110px">
+				<a href="<spring:url value="/oups.html" htmlEscape="true"/>"><i class="icon-warning-sign"></i>Error</a>
 			</li>
 		</ul>
 	</div>

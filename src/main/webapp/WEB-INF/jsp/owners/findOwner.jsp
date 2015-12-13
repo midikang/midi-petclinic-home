@@ -8,20 +8,14 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-	<head>
 		<jsp:include page="../fragments/staticFiles.jsp"/>
-		<title>Find owner</title>
-	</head>
 	<body>
-		
-		<div>
+		<div class="container">
 			<div>
 				<jsp:include page="../fragments/bodyHeader.jsp"/>
 			</div>
-		
 			<div>
 				<h2>Find Owner</h2>
-				
 				<spring:url value="/owners.html" var="formUrl"/>
 				<form:form modelAttribute="owner" action="${fn:escapeXml(formUrl)}"  method="get" class="form-horizontal" id="find-owner-form">
 					<div>
@@ -32,20 +26,20 @@
 					<div>
 						<button type="submit">Find Owner</button>
 					</div>
-					
+
 				</form:form>
 				<br/>
-				
+
 				<spring:url value="/owners/new" var="newUrl" htmlEscape="true"/>
 				<a href="${newUrl}">Add Owner</a>
 			</div>
-			
+
 			<div>
 				<jsp:include page="../fragments/footer.jsp"/>
 			</div>
-		
+
 		</div>
-	
-	
+
+
 	</body>
 </html>

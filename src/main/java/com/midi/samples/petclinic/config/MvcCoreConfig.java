@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Description;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.MediaType;
 import org.springframework.web.servlet.HandlerExceptionResolver;
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 
 import com.midi.samples.petclinic.service.ClinicService;
 import com.midi.samples.petclinic.web.PetTypeFormatter;
@@ -28,50 +31,65 @@ public class MvcCoreConfig extends WebMvcConfigurerAdapter {
 
 	@Autowired
 	private ClinicService clinicService;
-
-	@Override
-	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/").setViewName("welcome");
-	}
-
-	@Bean
-	public PetTypeFormatter petTypeFormatter() {
-		return new PetTypeFormatter(clinicService);
-	}
-	
-
-	@Override
-	public void addFormatters(FormatterRegistry registry) {
-		registry.addFormatter(petTypeFormatter());
-	}
-
-	@Override
-	public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
-		// TODO Auto-generated method stub
-	}
-
-	@Override
+    
+    @Override
 	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
 		configurer.ignoreAcceptHeader(true);
 		configurer.defaultContentType(MediaType.TEXT_HTML);
-	}
-
-	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		// all resources inside folder src/main/webapp/resources are mapped so
-		// they can be refered to inside JSP files (see header.jsp for more
-		// details)
-		registry.addResourceHandler("/resources/**").addResourceLocations(
-				"/resources/");
-		// uses WebJars so Javascript and CSS libs can be declared as Maven dependencies (Bootstrap, jQuery...)
-		registry.addResourceHandler("/webjars/**").addResourceLocations(
-				"classpath:/META-INF/resources/webjars/");
+		configurer.mediaType("html", MediaType.TEXT_HTML);
 	}
 
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		configurer.enable();
 	}
+    
+    @Override
+	public void addFormatters(FormatterRegistry registry) {
+		registry.addFormatter(petTypeFormatter());
+	}
+
+    @Bean
+	public PetTypeFormatter petTypeFormatter() {
+		return new PetTypeFormatter(clinicService);
+	}
+    
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		// all resources inside folder src/main/webapp/resources are mapped so
+		// they can be refered to inside JSP files (see header.jsp for more
+		// details)
+		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+		registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+	}
+    
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addViewController("/").setViewName("welcome");
+	}
+
+	@Bean(name="messageSource")
+	@Description("Message source for this context, loaded from localization 'message_xx' files.")
+	public ReloadableResourceBundleMessageSource eloadableResourceBundleMessageSource() {
+		// Files are stored inside src/main/resources
+		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+		messageSource.setBasenames("classpath:messages/messages");
+		return messageSource;
+	}
+
+	@Override
+	public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver>
+		exceptionResolvers) {
+		SimpleMappingExceptionResolver exceptionResolver = new SimpleMappingExceptionResolver();
+		// results into 'WEB-INF/jsp/exception.jsp'
+		exceptionResolver.setDefaultErrorView("exception");
+		// needed otherwise exception won't be logged anywhere
+		exceptionResolver.setWarnLogCategory("warn");
+		exceptionResolvers.add(exceptionResolver);
+	}
+
+
+
 
 	
 	

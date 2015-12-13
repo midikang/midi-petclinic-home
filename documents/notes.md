@@ -21,3 +21,8 @@ Solution
 --------
 1. Change field petType to type,and regenerate getter/setter.
 2. Or, 	change type to petType in <petclinic:selectField label="Type" name="type" size="5" names="${types}"/>
+
+
+
+org.springframework.data.jpa.repository.support.SimpleJpaRepository@43f41d7d
+org.springframework.aop.framework.JdkDynamicAopProxy@c4943df2

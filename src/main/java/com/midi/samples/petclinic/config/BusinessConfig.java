@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 // To find ClinicService
 @PropertySource("classpath:spring/data-access.properties")
 @EnableTransactionManagement
-@Import({DataSourceConfig.class, InitDataSourceConfig.class, JpaConfig.class})
+@Import({DataSourceConfig.class, InitDataSourceConfig.class, SpringDataJpaConfig.class})
 public class BusinessConfig {
 
 	

@@ -6,7 +6,7 @@
 <%@  attribute name="label" required="true" rtexprvalue="true"
 			description="Label appears in red color if input is considered as invalid after submission" %>
 
-<spring:bind path="${name }">
+<spring:bind path="${name}">
 	<c:set var="cssGroup" value="control-group ${status.error ? 'error' : '' }"></c:set>
 	
 	<div class="${cssGroup}">

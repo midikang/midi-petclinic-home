@@ -12,9 +12,14 @@
 
 <spring:bind path="${name }">
 	<c:set var="cssGroup" value="control-group ${status.error ? 'error' : '' }"/>
-	<div class="${cssGroup }">
+	<div class="${cssGroup}">
 		<label class="control-label">${label }</label>
-		<span class="help-inline">${status.errorMessage }</span>
+        
+        <div class="controls">
+            <form:select path="${name}" items="${names}" size="${size}"/>
+            <span class="help-inline">${status.errorMessage }</span>
+        </div>
+		
 	</div>
 </spring:bind>
 
