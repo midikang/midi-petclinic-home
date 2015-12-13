@@ -17,6 +17,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -28,7 +29,7 @@ public class Pet extends NamedEntity {
 	@Column(name="birth_date")
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
-	private DateTime birthDate;
+	private LocalDate birthDate;
 
 	@ManyToOne
 	@JoinColumn(name="owner_id")
@@ -49,11 +50,11 @@ public class Pet extends NamedEntity {
 		this.type = type;
 	}
 
-	public DateTime getBirthDate() {
+	public LocalDate getBirthDate() {
 		return birthDate;
 	}
 
-	public void setBirthDate(DateTime birthDate) {
+	public void setBirthDate(LocalDate birthDate) {
 		this.birthDate = birthDate;
 	}
 

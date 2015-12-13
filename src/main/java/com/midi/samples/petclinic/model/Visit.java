@@ -9,6 +9,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -18,7 +19,7 @@ public class Visit extends BaseEntity {
 	@Column(name = "visit_date")
 	@Type(type="org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
-	private DateTime date;
+	private LocalDate date;
 	
 	@NotEmpty
 	@Column(name = "description" )
@@ -29,7 +30,7 @@ public class Visit extends BaseEntity {
 	private Pet pet;
 	
 	public Visit() {
-		this.date = new DateTime();
+		this.date = new LocalDate();
 	}
 
 	public Pet getPet() {
@@ -41,11 +42,11 @@ public class Visit extends BaseEntity {
 	}
 
 
-	public DateTime getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(DateTime date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
