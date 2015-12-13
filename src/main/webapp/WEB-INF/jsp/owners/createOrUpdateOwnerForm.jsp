@@ -16,7 +16,7 @@
 	</head>
 	<body>
 		
-		<div>
+		<div class="container">
 			<div>
 				<jsp:include page="../fragments/bodyHeader.jsp"/>
 				
@@ -32,7 +32,7 @@
 			</div>
 		
 			<div>
-				<h2><c:if test="${owner['new']}">New</c:if>Owner</h2>
+				<h2><c:if test="${owner['new']}">New </c:if>Owner</h2>
 				
 				
 				<form:form modelAttribute="owner" method="${method}" class="form-horizontal" id="add-owner-form">
