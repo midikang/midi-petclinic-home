@@ -12,10 +12,10 @@
   <div class="container">
     <jsp:include page="../fragments/bodyHeader.jsp"/>
     <h2>Vets</h2>
-	<datatables:table id="vets" data="${vetList}" row="vet"
+	<datatables:table id="vets" data="${vets.vetList}" row="vet"
 		theme="bootstrap2" cssClass="table table-stripped" pageable="false"
 		info="false">
-		<datatables:column title="Name">
+		<datatables:column title="Name" display="html">
 			<c:out
 					value="${vet.firstName}" /> <c:out value="${vet.lastName}" />
 		</datatables:column>

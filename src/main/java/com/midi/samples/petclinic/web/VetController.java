@@ -27,7 +27,7 @@ public class VetController {
 		Vets vets = new Vets();
 		Collection<Vet> vetList = this.clinicService.findVets();
 		vets.getVetList().addAll(vetList);
-		model.put("vetList", vetList);
+		model.put("vets", vets);
 		return "vets/vetList";
 	}
 	
