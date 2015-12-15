@@ -20,8 +20,19 @@
 					value="${vet.firstName}" /> <c:out value="${vet.lastName}" />
 		</datatables:column>
 	</datatables:table>
+	<div></div>
 	<jsp:include page="../fragments/footer.jsp"/>
   </div>
+  <table>
+  	<tr>
+  		<td>
+  			<a href="<spring:url value="/vets.xml" htmlEscape="true"/>">View as XML</a>
+  		</td>
+  		<td>
+  			<a href="<spring:url value="/vets.xml" htmlEscape="true"/>">View as JSON</a>
+  		</td>
+  	</tr>
+  </table>
 
 
 </html>
