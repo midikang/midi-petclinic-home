@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.midi.samples.petclinic.model.Vet;
 import com.midi.samples.petclinic.model.Vets;
@@ -21,7 +22,7 @@ public class VetController {
 		this.clinicService = clinicService;
 	}
 	
-	@RequestMapping(value={"/vets.html"})
+	@RequestMapping(value={"/vets.html","/vets.xml"})
 	public String showList(Map<String,Object > model){
 		Vets vets = new Vets();
 		Collection<Vet> vetList = this.clinicService.findVets();
@@ -30,5 +31,10 @@ public class VetController {
 		return "vets/vetList";
 	}
 	
-	
+	@RequestMapping("/vets.json")
+	public @ResponseBody Vets showResourcesVetList() {
+		Vets vets = new Vets();
+		vets.getVetList().addAll(this.clinicService.findVets());
+		return vets;
+	}
 }

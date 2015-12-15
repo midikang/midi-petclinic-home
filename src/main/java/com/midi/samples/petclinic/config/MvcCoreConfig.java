@@ -37,6 +37,7 @@ public class MvcCoreConfig extends WebMvcConfigurerAdapter {
 		configurer.ignoreAcceptHeader(true);
 		configurer.defaultContentType(MediaType.TEXT_HTML);
 		configurer.mediaType("html", MediaType.TEXT_HTML);
+		configurer.mediaType("xml", MediaType.APPLICATION_XML);
 	}
 
 	@Override
