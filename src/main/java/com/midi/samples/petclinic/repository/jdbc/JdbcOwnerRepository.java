@@ -20,7 +20,9 @@ import org.springframework.orm.ObjectRetrievalFailureException;
 import org.springframework.stereotype.Repository;
 
 import com.midi.samples.petclinic.model.Owner;
+import com.midi.samples.petclinic.model.PetType;
 import com.midi.samples.petclinic.repository.OwnerRepository;
+import com.midi.samples.petclinic.util.EntityUtils;
 
 @Repository
 public class JdbcOwnerRepository implements OwnerRepository {
@@ -75,13 +77,37 @@ public class JdbcOwnerRepository implements OwnerRepository {
 				params,
 				new JdbcPetVisitExtractor());
 		
+		Collection<PetType> petTypes = getPetTypes();
+		for (JdbcPet pet: pets) {
+			pet.setType(EntityUtils.getById(petTypes, PetType.class, pet.getTypeId()));
+			owner.addPet(pet);
+		}
 		
+	}
+
+	private Collection<PetType> getPetTypes() {
+		Collection<PetType> petTypes = this.namedParameterJdbcTemplate.query("", new HashMap<String,Object>(),
+				BeanPropertyRowMapper.newInstance(PetType.class));
+		return petTypes;
 	}
 
 	@Override
 	public Collection<Owner> findByLastName(String lastName) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+		Map<String, Object> params = new HashMap<>();
+		params.put("lastName", lastName);
+		List<Owner> owners = this.namedParameterJdbcTemplate.query(
+				"SELECT id, first_name, last_name, address, city, telephone FROM owners WHERE last_name like :lastName", 
+				params, 
+				BeanPropertyRowMapper.newInstance(Owner.class));
+		loadOwnersPetsAndVisits(owners);
+		return owners;
+	}
+
+	private void loadOwnersPetsAndVisits(List<Owner> owners) {
+		for (Owner owner: owners) {
+			loadPetsAndVisits(owner);
+		}
+		
 	}
 
 	@Override
