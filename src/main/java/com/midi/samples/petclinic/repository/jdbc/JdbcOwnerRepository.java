@@ -68,8 +68,8 @@ public class JdbcOwnerRepository implements OwnerRepository {
 	private void loadPetsAndVisits(Owner owner) {
 		Map<String, Object> params = new HashMap<>();
 		params.put("id", owner.getId());
-		String sql = "SELECT pets.id, name, birth_name, type_id, owner_id, visits.id as visit_id "
-				+ "visit_date, description, pet_id "
+		String sql = "SELECT pets.id, name, birth_date, type_id, owner_id, visits.id as visit_id "
+				+ "visits.visit_date, visits.description, visits.pet_id "
 				+ "FROM pets LEFT OUTER JOIN visits "
 				+ "ON pets.id = visits.pet_id "
 				+ "WHERE owner_id=:id";
@@ -87,7 +87,9 @@ public class JdbcOwnerRepository implements OwnerRepository {
 	}
 
 	private Collection<PetType> getPetTypes() {
-		Collection<PetType> petTypes = this.namedParameterJdbcTemplate.query("", new HashMap<String,Object>(),
+		Collection<PetType> petTypes = this.namedParameterJdbcTemplate.query(
+				"SELECT id, name FROM types",
+				new HashMap<String,Object>(),
 				BeanPropertyRowMapper.newInstance(PetType.class));
 		return petTypes;
 	}
@@ -96,7 +98,7 @@ public class JdbcOwnerRepository implements OwnerRepository {
 	@Override
 	public Collection<Owner> findByLastName(String lastName) throws DataAccessException {
 		Map<String, Object> params = new HashMap<>();
-		params.put("lastName", lastName);
+		params.put("lastName", lastName+"%");
 		List<Owner> owners = this.namedParameterJdbcTemplate.query(
 				"SELECT id, first_name, last_name, address, city, telephone FROM owners WHERE last_name like :lastName", 
 				params, 
