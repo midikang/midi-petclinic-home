@@ -1,4 +1,4 @@
-Steps
+Steps 
 ----------
 * Copy pom.xml
 * Copy web.xml

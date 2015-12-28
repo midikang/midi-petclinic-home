@@ -19,5 +19,4 @@ public class JdbcPet extends Pet {
 		this.typeId = typeId;
 	}
 	
-	
 }

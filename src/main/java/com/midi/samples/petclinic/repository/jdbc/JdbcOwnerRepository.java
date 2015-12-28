@@ -11,26 +11,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.orm.ObjectRetrievalFailureException;
 import org.springframework.stereotype.Repository;
 
 import com.midi.samples.petclinic.model.Owner;
 import com.midi.samples.petclinic.model.Pet;
+import com.midi.samples.petclinic.model.PetType;
 import com.midi.samples.petclinic.repository.OwnerRepository;
+import com.midi.samples.petclinic.util.EntityUtils;
 
 @Repository
 public class JdbcOwnerRepository implements OwnerRepository {
 
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-	private SimpleJdbcInsert insertOwner;
+	private SimpleJdbcInsert simpleJdbcInsert;
 	
+	
+	/**
+	 * 
+	 * Autowire 'dataSource' bean in DataSourceConfig in constructor
+	 * @param dataSource
+	 * @param namedParameterJdbcTemplate
+	 */
 	@Autowired
-	public JdbcOwnerRepository(DataSource dataSource, NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
-		this.insertOwner = new SimpleJdbcInsert(dataSource)
-				.withTableName("owner")
+	public JdbcOwnerRepository(DataSource dataSource) {
+		this.simpleJdbcInsert = new SimpleJdbcInsert(dataSource)
+				.withTableName("owners")
 				.usingGeneratedKeyColumns("id");
 		
 		this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
@@ -38,27 +49,58 @@ public class JdbcOwnerRepository implements OwnerRepository {
 
 	@Override
 	public Owner findById(int id) throws DataAccessException {
-		Map<String,Object> paramMap = new HashMap<>();
+
+		Owner owner;
+		String sql = "SELECT id, first_name, last_name, address, city, telephone FROM owners WHERE id=:id";
+		Map<String, Object> paramMap = new HashMap<>();
 		paramMap.put("id", id);
-		String sql = "SELECT owner_id, first_name, last_name, address, city, telephone FROM owners WHERE id=:id";
-		Owner owner ;
 		try {
-			owner = this.namedParameterJdbcTemplate.queryForObject(sql, paramMap, BeanPropertyRowMapper.newInstance(Owner.class));
+			owner = this.namedParameterJdbcTemplate.queryForObject(sql, paramMap,
+					BeanPropertyRowMapper.newInstance(Owner.class));
 		} catch (EmptyResultDataAccessException e) {
 			throw new ObjectRetrievalFailureException(Owner.class,id);
 		}
+		
 		loadPetsAndVisits(owner);
 		return owner;
 	}
 
+	private void loadPetsAndVisits(Owner owner) {
+		Map<String, Object> params = new HashMap<>();
+		params.put("id", owner.getId());
+		String sql = "SELECT pets.id, name, birth_name, type_id, owner_id, visits.id as visit_id "
+				+ "visit_date, description, pet_id "
+				+ "FROM pets LEFT OUTER JOIN visits "
+				+ "ON pets.id = visits.pet_id "
+				+ "WHERE owner_id=:id";
+		
+		final List<JdbcPet> pets = this.namedParameterJdbcTemplate.query(sql, 
+				params,
+				new JdbcPetVisitExtractor());
+		
+		Collection<PetType> petTypes = getPetTypes();
+		for (JdbcPet pet: pets) {
+			pet.setType(EntityUtils.getById(petTypes, PetType.class, pet.getTypeId()));
+			owner.addPet(pet);
+		}
+		
+	}
+
+	private Collection<PetType> getPetTypes() {
+		Collection<PetType> petTypes = this.namedParameterJdbcTemplate.query("", new HashMap<String,Object>(),
+				BeanPropertyRowMapper.newInstance(PetType.class));
+		return petTypes;
+	}
+	
+
 	@Override
 	public Collection<Owner> findByLastName(String lastName) throws DataAccessException {
-		String sql = "SELECT id, first_name, last_name, address, city, telephone FROM owners WHERE last_name=:lastName";
-		
-		Map<String, Object> paramMap = new HashMap<>();
-		paramMap.put("lastName", lastName + "%");
-		
-		List<Owner> owners = this.namedParameterJdbcTemplate.query(sql, paramMap, BeanPropertyRowMapper.newInstance(Owner.class));
+		Map<String, Object> params = new HashMap<>();
+		params.put("lastName", lastName);
+		List<Owner> owners = this.namedParameterJdbcTemplate.query(
+				"SELECT id, first_name, last_name, address, city, telephone FROM owners WHERE last_name like :lastName", 
+				params, 
+				BeanPropertyRowMapper.newInstance(Owner.class));
 		loadOwnersPetsAndVisits(owners);
 		return owners;
 	}
@@ -69,28 +111,21 @@ public class JdbcOwnerRepository implements OwnerRepository {
 		}
 	}
 
-	private void loadPetsAndVisits(Owner owner) {
-		Map<String, Object> map = new HashMap<>();
-		map.put("id", owner.getId());
-		String sql = "SELECT pets.id, name, birth_date, type_id, owner_id, visits.id as visit_id, visit_date, description, pet_id "
-				+ "FROM pets LEFT JOIN visits ON pets.id=pet_id WHERE owner_id=:id";
-		List<JdbcPet> pets = this.namedParameterJdbcTemplate.query(sql, map, new JdbcPetVisitExtractor());
-		for (Pet pet : pets) {
-			owner.addPet(pet);
-		}
-	}
-
 	@Override
 	public void save(Owner owner) throws DataAccessException {
-		BeanPropertySqlParameterSource paramMap = new BeanPropertySqlParameterSource(owner);
+
+		BeanPropertySqlParameterSource parameterSource = new BeanPropertySqlParameterSource(owner);
 		if (owner.isNew()) {
-			Number returnKey = this.insertOwner.executeAndReturnKey(paramMap);
-			owner.setId(returnKey.intValue());
-		} else {
-			String sql =  "UPDATE owners SET first_name=:firstName, last_name=:lastName, address=:address, "
-					+ "city=:city, telephone=:telephone WHERE id=:id";
-			this.namedParameterJdbcTemplate.update(sql , paramMap);
+			Number newKey =
+					this.simpleJdbcInsert.executeAndReturnKey(parameterSource);
+			owner.setId(newKey.intValue());
+		}  else {
+			this.namedParameterJdbcTemplate.update("UPDATE onwers SET first_name=:first_name, "
+					+ "last_name=:last_name, address=:address, city=:city, "
+					+ "telephone=:telephone WHERE id=:id", 
+					parameterSource);
 		}
+		
 	}
 
 }
