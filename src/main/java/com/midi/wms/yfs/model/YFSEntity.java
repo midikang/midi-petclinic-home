@@ -20,5 +20,33 @@ public class YFSEntity {
 	
 	@Column(name = "modifyts")
 	private DateTime modifyDate;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public DateTime getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(DateTime createDate) {
+		this.createDate = createDate;
+	}
+
+	public DateTime getModifyDate() {
+		return modifyDate;
+	}
+
+	public void setModifyDate(DateTime modifyDate) {
+		this.modifyDate = modifyDate;
+	}
+	
+	public boolean isNew() {
+		return (this.id== null);
+	}
 	
 }
