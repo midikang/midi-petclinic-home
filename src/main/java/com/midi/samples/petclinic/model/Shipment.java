@@ -11,9 +11,28 @@ public class Shipment extends YFSEntity {
 	
 	@Column(name = "shipment_no")
 	private String shipmentNo;
+	
 	@Column(name = "customer_name")
 	private String customerName;
 	
+	@Column(name = "ship_node")
+	private String shipNode;
+	
+	@Column(name = "document_type")
+	private String documentType;
+	
+	public String getShipNode() {
+		return shipNode;
+	}
+	public void setShipNode(String shipNode) {
+		this.shipNode = shipNode;
+	}
+	public String getDocumentType() {
+		return documentType;
+	}
+	public void setDocumentType(String documentType) {
+		this.documentType = documentType;
+	}
 	public String getShipmentNo() {
 		return shipmentNo;
 	}

@@ -17,21 +17,31 @@
     <h2>Shipment Information</h2>
 
     <table class="table table-striped" style="width:600px;">
-    	<tr>
-            <th>Shipment No</th>
-            <td><c:out value="${shipment.shipmentNo}"/></td>
-        </tr>
-        <tr>
-            <th>Customer Name</th>
-            <td><b><c:out value="${shipment.customerName}"/></b></td>
-        </tr>
-        <tr>
-            <td> 
-            	<spring:url value="{shipmentId}/edit.html" var="editUrl">
-                    <spring:param name="shipmentId" value="${shipment.id}"/>
-                </spring:url>
-                <a href="${fn:escapeXml(editUrl)}" class="btn btn-info">Edit Shipment</a></td>
-        </tr>
+	    	<tr>
+	            <th>Shipment No</th>
+	            <td><c:out value="${shipment.shipmentNo}"/></td>
+	     </tr>
+	     <tr>
+	            <th>Customer Name</th>
+	            <td><c:out value="${shipment.customerName}"/></td>
+	     </tr>
+	     <tr>
+	            <th>Ship Node</th>
+	            <td><c:out value="${shipment.shipNode}"/></td>
+	     </tr>
+	     <tr>
+	            <th>Document Type</th>
+	            <td><c:out value="${shipment.documentType}"/></td>
+	     </tr>
+	     <tr>
+	            <td> 
+	            	<spring:url value="{shipmentId}/edit.html" var="editUrl">
+	                    <spring:param name="shipmentId" value="${shipment.id}"/>
+	                </spring:url>
+	                <a href="${fn:escapeXml(editUrl)}" class="btn btn-info">Edit Shipment</a></td>
+	                
+	        </tr>
+
     </table>
 
     <jsp:include page="../fragments/footer.jsp"/>

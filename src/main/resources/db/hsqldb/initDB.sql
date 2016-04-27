@@ -11,9 +11,13 @@ CREATE TABLE yfs_shipment (
   id   INTEGER IDENTITY PRIMARY KEY,
   shipment_no VARCHAR(80),
   customer_name VARCHAR(80),
+  ship_node VARCHAR(80),
+  document_type VARCHAR(80),
   createts DATE,
   modifyts DATE
 );
+
+
 
 
 

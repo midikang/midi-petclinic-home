@@ -7,13 +7,16 @@
 <div class="navbar" style="width:601px;">
 	<div class="navbar-inner">
 		<ul class="nav">
-			<li style="width: 120px">
+			<li style="width: 60px">
 				<a href="<spring:url value="/" htmlEscape="true"/>"><i class="icon-home"></i>Home</a>
 			</li>
-			<li style="width: 150px">
+			<li style="width: 120px">
+				<a href="<spring:url value="/shipments/new.html" htmlEscape="true"/>"><i class="icon-search"></i>Create Shipment</a>
+			</li>
+			<li style="width: 120px">
 				<a href="<spring:url value="/owners/find.html" htmlEscape="true"/>"><i class="icon-search"></i>Find owners</a>
 			</li>
-			<li style="width: 160px">
+			<li style="width: 120px">
 				<a href="<spring:url value="/vets.html" htmlEscape="true"/>"><i class="icon-th-list"></i>Veterinarians</a>
 			</li>
 			<li style="width: 110px">
