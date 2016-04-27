@@ -55,11 +55,11 @@ public class ShipmentController {
 	}
 	
 	/**
-	 * Displaying an owner.
+	 * Displaying an shipment.
 	 * @return
 	 */
     @RequestMapping("/shipments/{shipmentId}")
-	public ModelAndView displayOwner(@PathVariable("shipmentId") int shipmentId){
+	public ModelAndView displayShipment(@PathVariable("shipmentId") int shipmentId){
 		ModelAndView mav = new ModelAndView("shipments/shipmentDetails");
 		mav.addObject(this.clinicService.findShipmentById(shipmentId));
 		return mav;
