@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.dao.DataAccessException;
 
+import com.midi.samples.petclinic.model.Location;
 import com.midi.samples.petclinic.model.Owner;
 import com.midi.samples.petclinic.model.Pet;
 import com.midi.samples.petclinic.model.PetType;
@@ -42,4 +43,11 @@ public interface ClinicService {
 	Collection<Shipment> findByCustomerName(String customerName) throws DataAccessException;
 	
 	void saveShipment(Shipment shipment) throws DataAccessException;
+	
+	Location findLocationById(int id) throws DataAccessException;
+	
+	Collection<Location> findLocationByZone(String zone) throws DataAccessException;
+	
+	void saveLocation(Location location) throws DataAccessException;
+	
 }

@@ -37,6 +37,8 @@
 				
 				<form:form modelAttribute="shipment" method="${method}" class="form-horizontal" id="add-shipment-form">
 					<petclinic:inputField label="Shipment No" name="shipmentNo"/>
+					<petclinic:inputField label="Enterprise" name="enterprise"/>
+					<petclinic:inputField label="Node" name="node"/>
 					<petclinic:inputField label="Customer Name" name="customerName"/>
 					<petclinic:inputField label="Ship Node" name="shipNode"/>
 					<petclinic:inputField label="Document Type" name="documentType"></petclinic:inputField>

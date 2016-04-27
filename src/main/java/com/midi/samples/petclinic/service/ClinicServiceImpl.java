@@ -8,12 +8,14 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.midi.samples.petclinic.model.Location;
 import com.midi.samples.petclinic.model.Owner;
 import com.midi.samples.petclinic.model.Pet;
 import com.midi.samples.petclinic.model.PetType;
 import com.midi.samples.petclinic.model.Shipment;
 import com.midi.samples.petclinic.model.Vet;
 import com.midi.samples.petclinic.model.Visit;
+import com.midi.samples.petclinic.repository.LocationRep;
 import com.midi.samples.petclinic.repository.OwnerRepository;
 import com.midi.samples.petclinic.repository.PetRepository;
 import com.midi.samples.petclinic.repository.ShipmentRepository;
@@ -28,15 +30,17 @@ public class ClinicServiceImpl implements ClinicService {
 	private VisitRepository visitRepository;
 	private VetRepository vetRepository;
 	private ShipmentRepository shipmentRepository;
+	private LocationRep locationRep;
 	
 	@Autowired
 	public ClinicServiceImpl(OwnerRepository ownerRepository, PetRepository petRepository,
-			VisitRepository visitRepository, VetRepository vetRepository, ShipmentRepository shipmentRepository) {
+			VisitRepository visitRepository, VetRepository vetRepository, ShipmentRepository shipmentRepository, LocationRep locationRep) {
 		this.ownerRepository = ownerRepository;
 		this.petRepository = petRepository;
 		this.visitRepository = visitRepository;
 		this.vetRepository = vetRepository;
 		this.shipmentRepository = shipmentRepository;
+		this.locationRep = locationRep;
 	}
 
 	@Override
@@ -58,6 +62,7 @@ public class ClinicServiceImpl implements ClinicService {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Collection<PetType> findPetTypes() throws DataAccessException {
 		return petRepository.findPetTypes();
 	}
@@ -69,6 +74,7 @@ public class ClinicServiceImpl implements ClinicService {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Pet findPetById(int petId) throws DataAccessException {
 		return petRepository.findById(petId);
 	}
@@ -80,6 +86,7 @@ public class ClinicServiceImpl implements ClinicService {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Visit> findVisitByPetId(Integer petId) throws DataAccessException {
 		return visitRepository.findByPetId(petId);
 	}
@@ -92,18 +99,39 @@ public class ClinicServiceImpl implements ClinicService {
 	}
 
 	@Override
+	@Transactional(readOnly=true)
 	public Shipment findShipmentById(int id) throws DataAccessException {
 		return shipmentRepository.findById(id);
 	}
 
 	@Override
+	@Transactional(readOnly=true)
 	public Collection<Shipment> findByCustomerName(String customerName) throws DataAccessException {
 		return shipmentRepository.findByCustomerName(customerName);
 	}
 
 	@Override
+	@Transactional
 	public void saveShipment(Shipment shipment) throws DataAccessException {
 		shipmentRepository.save(shipment);
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public Location findLocationById(int id) throws DataAccessException {
+		return locationRep.findById(id);
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public Collection<Location> findLocationByZone(String zone) throws DataAccessException {
+		return locationRep.findByZone(zone);
+	}
+
+	@Override
+	@Transactional
+	public void saveLocation(Location location) throws DataAccessException {
+		locationRep.save(location);
 	}
 
 }

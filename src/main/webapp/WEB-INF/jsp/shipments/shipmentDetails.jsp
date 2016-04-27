@@ -22,6 +22,14 @@
 	            <td><c:out value="${shipment.shipmentNo}"/></td>
 	     </tr>
 	     <tr>
+	            <th>Enterprise</th>
+	            <td><c:out value="${shipment.enterprise}"/></td>
+	     </tr>
+	     <tr>
+	            <th>Node</th>
+	            <td><c:out value="${shipment.node}"/></td>
+	     </tr>
+	     <tr>
 	            <th>Customer Name</th>
 	            <td><c:out value="${shipment.customerName}"/></td>
 	     </tr>

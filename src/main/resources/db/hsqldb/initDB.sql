@@ -7,8 +7,24 @@ DROP TABLE types IF EXISTS;
 DROP TABLE owners IF EXISTS;
 
 DROP TABLE yfs_shipment IF EXISTS;
+DROP TABLE yfs_location IF EXISTS;
+
+
+CREATE TABLE yfs_location (
+  id   INTEGER IDENTITY PRIMARY KEY,
+  enterprise VARCHAR(80),
+  node VARCHAR(80),
+  zone_id VARCHAR(80),
+  location_barcode VARCHAR(80),
+  description VARCHAR(80),
+  createts DATE,
+  modifyts DATE
+);
+
 CREATE TABLE yfs_shipment (
   id   INTEGER IDENTITY PRIMARY KEY,
+  enterprise VARCHAR(80),
+  node VARCHAR(80),
   shipment_no VARCHAR(80),
   customer_name VARCHAR(80),
   ship_node VARCHAR(80),
@@ -16,10 +32,6 @@ CREATE TABLE yfs_shipment (
   createts DATE,
   modifyts DATE
 );
-
-
-
-
 
 CREATE TABLE vets (
   id         INTEGER IDENTITY PRIMARY KEY,

@@ -15,6 +15,12 @@ public class YFSEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@Column(name = "enterprise")
+	private String enterprise;
+	
+	@Column(name = "node")
+	private String node;
+	
 	@Column(name = "createts")
 	private DateTime createDate;
 	
@@ -31,6 +37,22 @@ public class YFSEntity {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getEnterprise() {
+		return enterprise;
+	}
+
+	public void setEnterprise(String enterprise) {
+		this.enterprise = enterprise;
+	}
+
+	public String getNode() {
+		return node;
+	}
+
+	public void setNode(String node) {
+		this.node = node;
 	}
 
 	public DateTime getCreateDate() {
