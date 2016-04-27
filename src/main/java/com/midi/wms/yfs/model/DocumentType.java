@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+import com.midi.samples.petclinic.model.YFSEntity;
+
 @Entity
 @Table(name = "yfs_document_type")
 public class DocumentType extends YFSEntity {

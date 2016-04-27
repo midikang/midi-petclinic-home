@@ -6,6 +6,16 @@ DROP TABLE pets IF EXISTS;
 DROP TABLE types IF EXISTS;
 DROP TABLE owners IF EXISTS;
 
+DROP TABLE yfs_shipment IF EXISTS;
+CREATE TABLE yfs_shipment (
+  id   INTEGER IDENTITY PRIMARY KEY,
+  shipment_no VARCHAR(80),
+  customer_name VARCHAR(80),
+  createts DATE,
+  modifyts DATE
+);
+
+
 
 CREATE TABLE vets (
   id         INTEGER IDENTITY PRIMARY KEY,
