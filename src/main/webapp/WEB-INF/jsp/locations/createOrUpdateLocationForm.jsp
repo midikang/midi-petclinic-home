@@ -36,11 +36,15 @@
 				
 				
 				<form:form modelAttribute="location" method="${method}" class="form-horizontal" id="add-location-form">
+					<dir class="control-group" id="zone">
+						<label class="control-label">Zone </label>
+						<c:out value="${location.zone.zoneName}"></c:out>
+					</dir>
+				
 					<petclinic:inputField label="Location Barcode" name="locationBarcode"/>
 					<petclinic:inputField label="Enterprise" name="enterprise"/>
 					<petclinic:inputField label="Node" name="node"/>
 					<petclinic:inputField label="Description" name="description"/>
-					<petclinic:inputField label="Zone Id" name="zoneId"/>
 					<c:choose>
 						<c:when test="${location['new']}">
 							<button type="submit">Add Location</button>

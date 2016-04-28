@@ -2,14 +2,17 @@ package com.midi.samples.petclinic.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "yfs_location")
 public class Location extends YFSEntity {
 	
-	@Column(name = "zone_id")
-	private String zoneId;
+	@ManyToOne
+	@JoinColumn(name = "zone_id")
+	private Zone zone;
 	
 	@Column(name = "location_barcode")
 	private String locationBarcode;
@@ -17,12 +20,12 @@ public class Location extends YFSEntity {
 	@Column(name = "description")
 	private String description;
 
-	public String getZoneId() {
-		return zoneId;
+	public Zone getZone() {
+		return zone;
 	}
 
-	public void setZoneId(String zoneId) {
-		this.zoneId = zoneId;
+	public void setZone(Zone zone) {
+		this.zone = zone;
 	}
 
 	public String getLocationBarcode() {

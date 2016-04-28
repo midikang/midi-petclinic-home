@@ -16,8 +16,8 @@ public interface SDLocationRep extends LocationRep, Repository<Location, Integer
 	@Query("SELECT location FROM Location location WHERE location.id = :id")
 	Location findById(@Param("id") int id) throws DataAccessException;
 
-	@Override
-	@Query("SELECT location FROM Location location WHERE location.zoneId = :zoneId")
-	Collection<Location> findByZoneId(@Param("zoneId") String zoneId) throws DataAccessException;
+//	@Override
+//	@Query("SELECT location FROM Location location WHERE location.zoneId = :zoneId")
+//	Collection<Location> findByZoneId(@Param("zoneId") String zoneId) throws DataAccessException;
 
 }

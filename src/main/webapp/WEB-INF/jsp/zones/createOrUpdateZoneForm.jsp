@@ -38,6 +38,7 @@
 				<form:form modelAttribute="zone" method="${method}" class="form-horizontal" id="add-zone-form">
 					<petclinic:inputField label="Enterprise" name="enterprise"/>
 					<petclinic:inputField label="Node" name="node"/>
+					<petclinic:inputField label="Zone Name" name="zoneName"/>
 					<petclinic:inputField label="Description" name="description"/>
 					<c:choose>
 						<c:when test="${zone['new']}">

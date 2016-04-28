@@ -44,10 +44,4 @@ public interface ClinicService {
 	
 	void saveShipment(Shipment shipment) throws DataAccessException;
 	
-	Location findLocationById(int id) throws DataAccessException;
-	
-	Collection<Location> findLocationByZoneId(String zoneId) throws DataAccessException;
-	
-	void saveLocation(Location location) throws DataAccessException;
-	
 }

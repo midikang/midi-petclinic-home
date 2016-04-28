@@ -118,22 +118,5 @@ public class ClinicServiceImpl implements ClinicService {
 		shipmentRepository.save(shipment);
 	}
 
-	@Override
-	@Transactional(readOnly=true)
-	public Location findLocationById(int id) throws DataAccessException {
-		return locationRep.findById(id);
-	}
-
-	@Override
-	@Transactional(readOnly=true)
-	public Collection<Location> findLocationByZoneId(String zoneId) throws DataAccessException {
-		return locationRep.findByZoneId(zoneId);
-	}
-
-	@Override
-	@Transactional
-	public void saveLocation(Location location) throws DataAccessException {
-		locationRep.save(location);
-	}
 
 }

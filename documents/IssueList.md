@@ -1,0 +1,1 @@
+- failed to lazily initialize a collection of role: com.midi.samples.petclinic.model.Zone.locations, could not initialize proxy - no Session

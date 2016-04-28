@@ -27,6 +27,10 @@
 				<td><c:out value="${zone.node}" /></td>
 			</tr>
 			<tr>
+				<th>Zone Name</th>
+				<td><c:out value="${zone.zoneName}" /></td>
+			</tr>
+			<tr>
 				<th>Description</th>
 				<td><c:out value="${zone.description}" /></td>
 			</tr>
@@ -35,6 +39,12 @@
 						<spring:param name="zoneId" value="${zone.id}" />
 					</spring:url> <a href="${fn:escapeXml(editUrl)}" class="btn btn-info">Edit
 						Zone</a></td>
+				<td>
+					<spring:url value="{zoneId}/locations/new.html" var="addUrl">
+						<spring:param name="zoneId" value="${zone.id}"></spring:param>
+					</spring:url>
+					<a href="${fn:escapeXml(addUrl)}" class="btn btn-success">Add New Location</a>
+				</td>						
 			</tr>
 
 		</table>
