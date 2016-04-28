@@ -46,7 +46,7 @@ public interface ClinicService {
 	
 	Location findLocationById(int id) throws DataAccessException;
 	
-	Collection<Location> findLocationByZone(String zone) throws DataAccessException;
+	Collection<Location> findLocationByZoneId(String zoneId) throws DataAccessException;
 	
 	void saveLocation(Location location) throws DataAccessException;
 	

@@ -14,6 +14,9 @@
 				<a href="<spring:url value="/shipments/new.html" htmlEscape="true"/>"><i class="icon-search"></i>Create Shipment</a>
 			</li>
 			<li style="width: 120px">
+				<a href="<spring:url value="/locations/new.html" htmlEscape="true"/>"><i class="icon-search"></i>Create Location</a>
+			</li>
+			<li style="width: 120px">
 				<a href="<spring:url value="/owners/find.html" htmlEscape="true"/>"><i class="icon-search"></i>Find owners</a>
 			</li>
 			<li style="width: 120px">

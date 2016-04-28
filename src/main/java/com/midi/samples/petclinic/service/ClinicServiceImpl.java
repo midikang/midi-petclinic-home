@@ -124,8 +124,8 @@ public class ClinicServiceImpl implements ClinicService {
 
 	@Override
 	@Transactional(readOnly=true)
-	public Collection<Location> findLocationByZone(String zone) throws DataAccessException {
-		return locationRep.findByZone(zone);
+	public Collection<Location> findLocationByZoneId(String zoneId) throws DataAccessException {
+		return locationRep.findByZoneId(zoneId);
 	}
 
 	@Override

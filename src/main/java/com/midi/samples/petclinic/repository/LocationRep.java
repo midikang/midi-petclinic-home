@@ -10,7 +10,7 @@ public interface LocationRep {
 	
 	Location findById(int id) throws DataAccessException;
 	
-	Collection<Location> findByZone(String zone) throws DataAccessException;
+	Collection<Location> findByZoneId(String zoneId) throws DataAccessException;
 	
 	void save(Location location) throws DataAccessException;
 
