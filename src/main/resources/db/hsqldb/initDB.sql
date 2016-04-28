@@ -8,7 +8,18 @@ DROP TABLE owners IF EXISTS;
 
 DROP TABLE yfs_shipment IF EXISTS;
 DROP TABLE yfs_location IF EXISTS;
+DROP TABLE yfs_zone IF EXISTS;
 
+
+CREATE TABLE yfs_zone (
+  id   INTEGER IDENTITY PRIMARY KEY,
+  enterprise VARCHAR(80),
+  node VARCHAR(80),
+  track_inventory CHAR(1),
+  description VARCHAR(80),
+  createts DATE,
+  modifyts DATE
+);
 
 CREATE TABLE yfs_location (
   id   INTEGER IDENTITY PRIMARY KEY,

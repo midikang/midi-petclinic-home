@@ -21,6 +21,7 @@ import com.midi.samples.petclinic.repository.PetRepository;
 import com.midi.samples.petclinic.repository.ShipmentRepository;
 import com.midi.samples.petclinic.repository.VetRepository;
 import com.midi.samples.petclinic.repository.VisitRepository;
+import com.midi.samples.petclinic.repository.ZoneRep;
 
 @Service
 public class ClinicServiceImpl implements ClinicService {
@@ -31,6 +32,7 @@ public class ClinicServiceImpl implements ClinicService {
 	private VetRepository vetRepository;
 	private ShipmentRepository shipmentRepository;
 	private LocationRep locationRep;
+	
 	
 	@Autowired
 	public ClinicServiceImpl(OwnerRepository ownerRepository, PetRepository petRepository,

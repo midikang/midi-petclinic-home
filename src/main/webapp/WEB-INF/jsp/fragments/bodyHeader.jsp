@@ -11,13 +11,16 @@
 				<a href="<spring:url value="/" htmlEscape="true"/>"><i class="icon-home"></i>Home</a>
 			</li>
 			<li style="width: 120px">
-				<a href="<spring:url value="/shipments/new.html" htmlEscape="true"/>"><i class="icon-search"></i>Create Shipment</a>
+				<a href="<spring:url value="/zones/new.html" htmlEscape="true"/>">Create Zone</a>
 			</li>
 			<li style="width: 120px">
-				<a href="<spring:url value="/locations/new.html" htmlEscape="true"/>"><i class="icon-search"></i>Create Location</a>
+				<a href="<spring:url value="/locations/new.html" htmlEscape="true"/>">Create Location</a>
 			</li>
 			<li style="width: 120px">
-				<a href="<spring:url value="/owners/find.html" htmlEscape="true"/>"><i class="icon-search"></i>Find owners</a>
+				<a href="<spring:url value="/shipments/new.html" htmlEscape="true"/>">Create Shipment</a>
+			</li>
+			<li style="width: 120px">
+				<a href="<spring:url value="/owners/find.html" htmlEscape="true"/>">Find owners</a>
 			</li>
 			<li style="width: 120px">
 				<a href="<spring:url value="/vets.html" htmlEscape="true"/>"><i class="icon-th-list"></i>Veterinarians</a>
