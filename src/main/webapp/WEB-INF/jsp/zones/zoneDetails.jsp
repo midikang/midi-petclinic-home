@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -33,6 +34,10 @@
 			<tr>
 				<th>Description</th>
 				<td><c:out value="${zone.description}" /></td>
+			</tr>
+			<tr>
+				<th>Track Inventory</th>
+				<td><form:checkbox path="zone.trackInventory"/></td>
 			</tr>
 			<tr>
 				<td><spring:url value="{zoneId}/edit.html" var="editUrl">

@@ -39,6 +39,9 @@
 					<petclinic:inputField label="Enterprise" name="enterprise"/>
 					<petclinic:inputField label="Node" name="node"/>
 					<petclinic:inputField label="Zone Name" name="zoneName"/>
+					<dir class="control-group" id="zone">
+						<label class="control-label">Track Inventory   <form:checkbox path="trackInventory"/></label>
+					</dir>
 					<petclinic:inputField label="Description" name="description"/>
 					<c:choose>
 						<c:when test="${zone['new']}">
