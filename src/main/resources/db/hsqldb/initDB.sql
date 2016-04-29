@@ -17,6 +17,13 @@ CREATE TABLE yfs_zone (
   node VARCHAR(80),
   zone_name varchar(80),
   track_inventory CHAR(1),
+  IS_ACTIVE_ZONE CHAR(1),
+  TRACK_CARTON_LPN CHAR(1),
+  TRACK_PALLET_LPN CHAR(1),
+  MIX_ENTERPRISE CHAR(1),
+  MIX_SKU CHAR(1),
+  MIX_FIFO CHAR(1),
+  MIX_RECEIPT_NO CHAR(1),
   description VARCHAR(80),
   createts DATE,
   modifyts DATE
