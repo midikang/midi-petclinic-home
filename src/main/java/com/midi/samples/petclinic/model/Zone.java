@@ -27,12 +27,101 @@ public class Zone extends YFSEntity {
 	@Column(name="track_inventory")
 	private Boolean trackInventory;
 	
+	@Convert(converter=BooleanToStringConverter.class)
+	@Column(name="IS_ACTIVE_ZONE")
+	private Boolean activeZone;
+	
+	@Convert(converter=BooleanToStringConverter.class)
+	@Column(name="TRACK_CARTON_LPN")
+	private Boolean trackCartonLPN;
+	
+	@Convert(converter=BooleanToStringConverter.class)
+	@Column(name="TRACK_PALLET_LPN")
+	private Boolean trackPalletLPN;
+	
+	@Convert(converter=BooleanToStringConverter.class)
+	@Column(name="MIX_ENTERPRISE")	
+	private Boolean mixEnterprise;
+	
+	@Convert(converter=BooleanToStringConverter.class)
+	@Column(name="MIX_SKU")
+	private Boolean mixSKU;
+	
+	@Convert(converter=BooleanToStringConverter.class)
+	@Column(name="MIX_FIFO")
+	private Boolean mixFIFO;
+	
+	@Convert(converter=BooleanToStringConverter.class)
+	@Column(name="MIX_RECEIPT_NO")
+	private Boolean mixReceiptNO;
+	
+	
 	@Column(name="description")
 	private String description;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy="zone")
 	private Set<Location> locations;
 	
+	public Boolean getActiveZone() {
+		return activeZone;
+	}
+
+	public void setActiveZone(Boolean activeZone) {
+		this.activeZone = activeZone;
+	}
+
+	public Boolean getTrackCartonLPN() {
+		return trackCartonLPN;
+	}
+
+	public void setTrackCartonLPN(Boolean trackCartonLPN) {
+		this.trackCartonLPN = trackCartonLPN;
+	}
+
+	public Boolean getTrackPalletLPN() {
+		return trackPalletLPN;
+	}
+
+	public void setTrackPalletLPN(Boolean trackPalletLPN) {
+		this.trackPalletLPN = trackPalletLPN;
+	}
+
+	public Boolean getMixEnterprise() {
+		return mixEnterprise;
+	}
+
+	public void setMixEnterprise(Boolean mixEnterprise) {
+		this.mixEnterprise = mixEnterprise;
+	}
+
+	public Boolean getMixSKU() {
+		return mixSKU;
+	}
+
+	public void setMixSKU(Boolean mixSKU) {
+		this.mixSKU = mixSKU;
+	}
+
+	public Boolean getMixFIFO() {
+		return mixFIFO;
+	}
+
+	public void setMixFIFO(Boolean mixFIFO) {
+		this.mixFIFO = mixFIFO;
+	}
+
+	public Boolean getMixReceiptNO() {
+		return mixReceiptNO;
+	}
+
+	public void setMixReceiptNO(Boolean mixReceiptNO) {
+		this.mixReceiptNO = mixReceiptNO;
+	}
+
+	public void setLocations(Set<Location> locations) {
+		this.locations = locations;
+	}
+
 	protected void setLocationsInternal(Set<Location> locations) {
 		this.locations = locations;
 	}

@@ -37,7 +37,15 @@
 			</tr>
 			<tr>
 				<th>Track Inventory</th>
-				<td><form:checkbox path="zone.trackInventory"/></td>
+				<td><dir class="control-group" id="zone">
+						<label class="control-label">Track Inventory   <form:checkbox path="zone.trackInventory"/></label>
+						<label class="control-label">IS_ACTIVE_ZONE   <form:checkbox path="zone.activeZone"/></label>
+						<label class="control-label">TRACK_CARTON_LPN   <form:checkbox path="zone.trackCartonLPN"/></label>
+						<label class="control-label">TRACK_PALLET_LPN   <form:checkbox path="zone.trackPalletLPN"/></label>
+						<label class="control-label">MIX_ENTERPRISE   <form:checkbox path="zone.mixEnterprise"/></label>
+						<label class="control-label">MIX_SKU   <form:checkbox path="zone.mixSKU"/></label>
+						<label class="control-label">MIX_FIFO   <form:checkbox path="zone.mixFIFO"/></label>
+					</dir></td>
 			</tr>
 			<tr>
 				<td><spring:url value="{zoneId}/edit.html" var="editUrl">

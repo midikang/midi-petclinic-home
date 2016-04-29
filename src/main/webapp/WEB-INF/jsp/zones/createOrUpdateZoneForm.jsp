@@ -41,6 +41,12 @@
 					<petclinic:inputField label="Zone Name" name="zoneName"/>
 					<dir class="control-group" id="zone">
 						<label class="control-label">Track Inventory   <form:checkbox path="trackInventory"/></label>
+						<label class="control-label">IS_ACTIVE_ZONE   <form:checkbox path="activeZone"/></label>
+						<label class="control-label">TRACK_CARTON_LPN   <form:checkbox path="trackCartonLPN"/></label>
+						<label class="control-label">TRACK_PALLET_LPN   <form:checkbox path="trackPalletLPN"/></label>
+						<label class="control-label">MIX_ENTERPRISE   <form:checkbox path="mixEnterprise"/></label>
+						<label class="control-label">MIX_SKU   <form:checkbox path="mixSKU"/></label>
+						<label class="control-label">MIX_FIFO   <form:checkbox path="mixFIFO"/></label>
 					</dir>
 					<petclinic:inputField label="Description" name="description"/>
 					<c:choose>
