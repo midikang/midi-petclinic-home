@@ -49,6 +49,24 @@
 
 		</table>
 
+		<h2>Locations</h2>
+			<table class="table" style="width:600px;">
+				<tr>
+					<th>Enterprise</th>
+					<th>Node</th>
+					<th>Location Barcode</th>
+					<th>Description</th>
+				</tr>
+				<c:forEach var="location" items="${zone.locations}">
+						<tr>
+							<td><c:out value="${location.enterprise}"/></td>
+							<td><c:out value="${location.node}"/></td>
+							<td><c:out value="${location.locationBarcode}"/></td>
+							<td><c:out value="${location.description}"/></td>
+						</tr>
+				</c:forEach>
+			</table>
+		
 		<jsp:include page="../fragments/footer.jsp" />
 
 	</div>
