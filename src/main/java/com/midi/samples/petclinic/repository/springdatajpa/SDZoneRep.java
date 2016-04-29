@@ -12,7 +12,7 @@ import com.midi.samples.petclinic.repository.ZoneRep;
 public interface SDZoneRep extends ZoneRep, Repository<Zone, Integer> {
 
 	@Override
-	@Query("SELECT zone from Zone zone where zone.id= :id")
+	@Query("SELECT zone from Zone zone left join fetch zone.locations where zone.id= :id")
 	Zone findById(@Param("id") int id) throws DataAccessException;
 
 //	@Override
