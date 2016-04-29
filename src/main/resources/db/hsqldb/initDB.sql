@@ -9,11 +9,20 @@ DROP TABLE owners IF EXISTS;
 DROP TABLE yfs_shipment IF EXISTS;
 DROP TABLE yfs_location IF EXISTS;
 DROP TABLE yfs_zone IF EXISTS;
+DROP TABLE yfs_common_code IF EXISTS;
 
+
+CREATE TABLE yfs_common_code (
+  id   INTEGER IDENTITY PRIMARY KEY,
+  code_type VARCHAR(80),
+  code_value VARCHAR(80),
+  createts DATE,
+  modifyts DATE
+);
 
 CREATE TABLE yfs_zone (
   id   INTEGER IDENTITY PRIMARY KEY,
-  enterprise VARCHAR(80),
+  enterprise_id INTEGER NOT NULL,
   node VARCHAR(80),
   zone_name varchar(80),
   track_inventory CHAR(1),
@@ -31,7 +40,7 @@ CREATE TABLE yfs_zone (
 
 CREATE TABLE yfs_location (
   id   INTEGER IDENTITY PRIMARY KEY,
-  enterprise VARCHAR(80),
+  enterprise_id INTEGER NOT NULL,
   node VARCHAR(80),
   zone_id INTEGER NOT NULL,
   location_barcode VARCHAR(80),
@@ -42,7 +51,7 @@ CREATE TABLE yfs_location (
 
 CREATE TABLE yfs_shipment (
   id   INTEGER IDENTITY PRIMARY KEY,
-  enterprise VARCHAR(80),
+  enterprise_id INTEGER NOT NULL,
   node VARCHAR(80),
   shipment_no VARCHAR(80),
   customer_name VARCHAR(80),

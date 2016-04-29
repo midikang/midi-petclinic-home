@@ -1,3 +1,15 @@
+INSERT INTO yfs_common_code VALUES (1, 'shipment_status', 'Shipment Created','2016-04-29','2016-04-29');
+INSERT INTO yfs_common_code VALUES (2, 'shipment_status', 'Send To Node','2016-04-29','2016-04-29');
+INSERT INTO yfs_common_code VALUES (3, 'shipment_status', 'Shipment Picked','2016-04-29','2016-04-29');
+INSERT INTO yfs_common_code VALUES (4, 'shipment_status', 'Shipment Packed','2016-04-29','2016-04-29');
+INSERT INTO yfs_common_code VALUES (5, 'shipment_status', 'Shipment Shipped','2016-04-29','2016-04-29');
+INSERT INTO yfs_common_code VALUES (6, 'enterprise', 'IBM','2016-04-29','2016-04-29');
+INSERT INTO yfs_common_code VALUES (7, 'enterprise', 'Microsoft','2016-04-29','2016-04-29');
+INSERT INTO yfs_common_code VALUES (8, 'node', 'S01','2016-04-29','2016-04-29');
+INSERT INTO yfs_common_code VALUES (9, 'node', 'S02','2016-04-29','2016-04-29');
+
+
+
 INSERT INTO vets VALUES (1, 'James', 'Carter');
 INSERT INTO vets VALUES (2, 'Helen', 'Leary');
 INSERT INTO vets VALUES (3, 'Linda', 'Douglas');

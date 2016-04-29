@@ -1,27 +1,33 @@
 package com.midi.samples.petclinic.service;
 
+import java.util.Collection;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.midi.samples.petclinic.model.CommonCode;
 import com.midi.samples.petclinic.model.Location;
 import com.midi.samples.petclinic.model.Zone;
+import com.midi.samples.petclinic.repository.CommonCodeRep;
 import com.midi.samples.petclinic.repository.LocationRep;
 import com.midi.samples.petclinic.repository.ZoneRep;
 
 @Service
 public class YfsServiceImpl implements YfsService {
 
+	private CommonCodeRep commonCodeRep;
 	private ZoneRep zoneRep;
 	private LocationRep locationRep;
 	
 	@Autowired
-	public YfsServiceImpl(ZoneRep zoneRep,LocationRep locationRep) {
+	public YfsServiceImpl(CommonCodeRep commonCodeRep, ZoneRep zoneRep, LocationRep locationRep) {
+		this.commonCodeRep = commonCodeRep;
 		this.zoneRep = zoneRep;
 		this.locationRep = locationRep;
 	}
-	
+
 	@Override
 	@Transactional(readOnly = true)
 	public Zone findZoneById(int id) throws DataAccessException {
@@ -62,6 +68,16 @@ public class YfsServiceImpl implements YfsService {
 	@Transactional
 	public void saveLocation(Location location) throws DataAccessException {
 		locationRep.save(location);
+	}
+
+	@Override
+	public Collection<CommonCode> findCommonCodeByCodeType(String codeType) throws DataAccessException {
+		return this.commonCodeRep.findByCodeType(codeType);
+	}
+
+	@Override
+	public void saveCommonCode(CommonCode commonCode) throws DataAccessException {
+		this.commonCodeRep.save(commonCode);
 	}
 
 

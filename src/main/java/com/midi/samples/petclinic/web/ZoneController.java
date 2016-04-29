@@ -1,5 +1,6 @@
 package com.midi.samples.petclinic.web;
 
+import java.util.Collection;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.midi.samples.petclinic.model.CommonCode;
 import com.midi.samples.petclinic.model.Zone;
 import com.midi.samples.petclinic.service.YfsService;
 
@@ -27,6 +30,12 @@ public class ZoneController {
 	@Autowired
 	public ZoneController(YfsService yfsService) {
 		this.yfsService = yfsService;
+	}
+	
+	@ModelAttribute("enterprises")
+	public Collection<CommonCode> populateEnterprises() {
+		Collection<CommonCode> enterprises = yfsService.findCommonCodeByCodeType("enterprise");
+		return enterprises;
 	}
 	
 	@InitBinder

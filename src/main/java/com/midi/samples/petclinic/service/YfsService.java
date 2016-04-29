@@ -1,7 +1,10 @@
 package com.midi.samples.petclinic.service;
 
+import java.util.Collection;
+
 import org.springframework.dao.DataAccessException;
 
+import com.midi.samples.petclinic.model.CommonCode;
 import com.midi.samples.petclinic.model.Location;
 import com.midi.samples.petclinic.model.Zone;
 
@@ -20,4 +23,8 @@ public interface YfsService {
 //	void enableTrackInventory(int id) throws DataAccessException;
 	
 //	void disableTrackInventory(int id) throws DataAccessException;
+	
+	Collection<CommonCode> findCommonCodeByCodeType(String codeType) throws DataAccessException;
+	
+	void saveCommonCode(CommonCode commonCode) throws DataAccessException;
 }

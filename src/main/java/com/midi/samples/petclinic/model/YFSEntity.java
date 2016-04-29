@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 
 import org.joda.time.DateTime;
@@ -15,8 +17,11 @@ public class YFSEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(name = "enterprise")
-	private String enterprise;
+//	@Column(name = "enterprise")
+//	private String enterprise;
+	@ManyToOne
+	@JoinColumn(name = "enterprise_id")
+	private CommonCode enterprise;
 	
 	@Column(name = "node")
 	private String node;
@@ -31,6 +36,14 @@ public class YFSEntity {
 		return (this.id== null);
 	}
 	
+	public CommonCode getEnterprise() {
+		return enterprise;
+	}
+
+	public void setEnterprise(CommonCode enterprise) {
+		this.enterprise = enterprise;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -39,13 +52,13 @@ public class YFSEntity {
 		this.id = id;
 	}
 
-	public String getEnterprise() {
-		return enterprise;
-	}
-
-	public void setEnterprise(String enterprise) {
-		this.enterprise = enterprise;
-	}
+//	public String getEnterprise() {
+//		return enterprise;
+//	}
+//
+//	public void setEnterprise(String enterprise) {
+//		this.enterprise = enterprise;
+//	}
 
 	public String getNode() {
 		return node;
