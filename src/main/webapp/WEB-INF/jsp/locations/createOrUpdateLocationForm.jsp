@@ -37,8 +37,7 @@
 				
 				<form:form modelAttribute="location" method="${method}" class="form-horizontal" id="add-location-form">
 					<dir class="control-group" id="zone">
-						<label class="control-label">Zone </label>
-						<c:out value="${location.zone.zoneName}"></c:out>
+						<label class="control-label">Zone <c:out value="${location.zone.zoneName}"/></label>
 					</dir>
 				
 					<petclinic:inputField label="Location Barcode" name="locationBarcode"/>
