@@ -22,7 +22,7 @@ CREATE TABLE yfs_common_code (
 
 CREATE TABLE yfs_zone (
   id   INTEGER IDENTITY PRIMARY KEY,
-  enterprise_id INTEGER NOT NULL,
+  enterprise_id INTEGER,-- NOT NULL,
   node VARCHAR(80),
   zone_name varchar(80),
   track_inventory CHAR(1),
@@ -37,6 +37,10 @@ CREATE TABLE yfs_zone (
   createts DATE,
   modifyts DATE
 );
+
+-- add foreign key
+ALTER TABLE yfs_zone ADD CONSTRAINT fk_zone_commoncode FOREIGN KEY (enterprise_id) REFERENCES yfs_common_code (id);
+
 
 CREATE TABLE yfs_location (
   id   INTEGER IDENTITY PRIMARY KEY,

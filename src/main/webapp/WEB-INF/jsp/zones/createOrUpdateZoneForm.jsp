@@ -36,12 +36,11 @@
 				
 				
 				<form:form modelAttribute="zone" method="${method}" class="form-horizontal" id="add-zone-form">
-					<!-- 
-					<petclinic:inputField label="Enterprise" name="enterprise"/>
-					 -->
-					 <dir class="control-group" id="enterprise">
-						<label class="control-label">Enterprise   <form:select path="${enterprise}" items="${enterprises}" size="2"/></label>
+					<%/** 
+					 <dir class="control-group">
+						<petclinic:selectField label="Enterprise" name="enterprise" size="2" names="{zone.enterprises}"/>
 					</dir>
+					 -- **/%>
 					<petclinic:inputField label="Node" name="node"/>
 					<petclinic:inputField label="Zone Name" name="zoneName"/>
 					<dir class="control-group" id="zone">

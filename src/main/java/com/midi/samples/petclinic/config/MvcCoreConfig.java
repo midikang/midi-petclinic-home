@@ -21,6 +21,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 
 import com.midi.samples.petclinic.service.ClinicService;
+import com.midi.samples.petclinic.service.YfsService;
+import com.midi.samples.petclinic.web.CommonCodeFormatter;
 import com.midi.samples.petclinic.web.PetTypeFormatter;
 
 @Configuration
@@ -31,6 +33,9 @@ public class MvcCoreConfig extends WebMvcConfigurerAdapter {
 
 	@Autowired
 	private ClinicService clinicService;
+	
+	@Autowired
+	private YfsService yfsService;
     
     @Override
 	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
@@ -54,6 +59,11 @@ public class MvcCoreConfig extends WebMvcConfigurerAdapter {
 	public PetTypeFormatter petTypeFormatter() {
 		return new PetTypeFormatter(clinicService);
 	}
+    
+    @Bean
+    public CommonCodeFormatter commonCodeFormatter() {
+    		return new CommonCodeFormatter(yfsService);
+    }
     
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
