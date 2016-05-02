@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class SimpleController {
 
-	@RequestMapping(name="/")
-	public @ResponseBody String simple(){
-		return "Ni hao!";
-	}
+//	@RequestMapping(name="/")
+//	public @ResponseBody String simple(){
+//		return "Ni hao!";
+//	}
 }
