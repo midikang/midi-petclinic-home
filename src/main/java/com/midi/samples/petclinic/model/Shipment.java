@@ -9,7 +9,7 @@ import javax.persistence.Table;
 public class Shipment extends YFSEntity {
 	//private DocumentType documentType;
 	
-	@Column(name = "shipment_no")
+	//@Column(name = "shipment_no")
 	private String shipmentNo;
 	
 	@Column(name = "customer_name")
