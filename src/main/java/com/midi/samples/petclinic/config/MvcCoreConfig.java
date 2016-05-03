@@ -53,6 +53,7 @@ public class MvcCoreConfig extends WebMvcConfigurerAdapter {
     @Override
 	public void addFormatters(FormatterRegistry registry) {
 		registry.addFormatter(petTypeFormatter());
+		registry.addFormatter(commonCodeFormatter());
 	}
 
     @Bean
