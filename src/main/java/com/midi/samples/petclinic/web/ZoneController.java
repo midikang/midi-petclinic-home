@@ -57,12 +57,12 @@ public class ZoneController {
 		} else {
 			this.yfsService.saveZone(zone);
 			status.setComplete();
-			return "redirect:/zones/" + zone.getId();
+			return "redirect:/zones/" + zone.getId()+"/"+zone.getNode();
 		}
 	}
 	
-	@RequestMapping("/zones/{zoneId}")
-	public ModelAndView displayZone(@PathVariable("zoneId") int zoneId) {
+	@RequestMapping("/zones/{zoneId}/{node}")
+	public ModelAndView displayZone(@PathVariable("zoneId") int zoneId,@PathVariable("node") String node) {
 		ModelAndView mav = new ModelAndView("zones/zoneDetails");
 		mav.addObject(yfsService.findZoneById(zoneId));
 		return mav;

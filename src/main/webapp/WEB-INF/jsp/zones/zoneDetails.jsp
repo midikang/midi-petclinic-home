@@ -48,8 +48,8 @@
 					</dir></td>
 			</tr>
 			<tr>
-				<td><spring:url value="{zoneId}/edit.html" var="editUrl">
-						<spring:param name="zoneId" value="${zone.id}" />
+				<td><spring:url value="{node}/edit.html" var="editUrl">
+						<spring:param name="node" value="${zone.node}" />
 					</spring:url> <a href="${fn:escapeXml(editUrl)}" class="btn btn-info">Edit
 						Zone</a></td>
 				<td>
